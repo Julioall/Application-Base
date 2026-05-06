@@ -2,7 +2,7 @@
 name: Orchestrator
 specialty: orchestrator
 description: Analisa a solicitação, escolhe os agentes especialistas adequados e coordena a sequência entre arquitetura, implementação, testes e revisão.
-tools: ['search', 'codebase']
+tools: ['search', 'search/codebase', 'edit/editFiles', 'terminal']
 ---
 
 # Papel

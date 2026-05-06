@@ -2,7 +2,7 @@
 name: Frontend
 specialty: frontend
 description: Implementa frontend Angular standalone.
-tools: ['search', 'codebase', 'editFiles', 'terminal']
+tools: ['search', 'search/codebase', 'edit/editFiles', 'terminal']
 ---
 
 # Papel

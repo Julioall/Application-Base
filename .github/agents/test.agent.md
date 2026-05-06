@@ -2,7 +2,7 @@
 name: Test
 specialty: test
 description: Cria testes xUnit exclusivamente para Services da camada Application.
-tools: ['search', 'codebase', 'editFiles', 'terminal']
+tools: ['search', 'search/codebase', 'edit/editFiles', 'terminal']
 ---
 
 # Papel

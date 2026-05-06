@@ -2,7 +2,7 @@
 name: Reviewer
 specialty: reviewer
 description: Revisa PRs com foco em Onion Architecture, SOLID, RavenDB, segurança e testes.
-tools: ['search', 'codebase']
+tools: ['search', 'search/codebase']
 ---
 
 # Papel
