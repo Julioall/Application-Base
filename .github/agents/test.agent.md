@@ -1,5 +1,5 @@
 ---
-name: Service Test Writer
+name: Test
 specialty: test
 description: Cria testes xUnit exclusivamente para Services da camada Application.
 tools: ['search', 'codebase', 'editFiles', 'terminal']

@@ -17,24 +17,24 @@ Consulte [AGENTS.md](../../AGENTS.md), [.github/copilot-instructions.md](../copi
 
 ## Especialistas disponíveis
 
-- `Architect Onion`: planeja a alteração e valida impacto arquitetural.
-- `Backend .NET 10`: implementa Application, Api, DTOs, DI e testes de service.
-- `RavenDB Specialist`: implementa repositories, configuração e persistência RavenDB na Infrastructure.
-- `Frontend Angular Standalone`: implementa alterações frontend.
-- `Service Test Writer`: cria testes xUnit apenas para Services.
+- `Architect`: planeja a alteração e valida impacto arquitetural.
+- `Backend`: implementa Application, Api, DTOs, DI e testes de service.
+- `Database`: implementa repositories, configuração e persistência RavenDB na Infrastructure.
+- `Frontend`: implementa alterações frontend.
+- `Test`: cria testes xUnit apenas para Services.
 - `Reviewer`: revisa arquitetura, segurança, testes e riscos.
 
 ## Estratégia de orquestração
 
 1. Classifique a solicitação: backend, frontend, full stack, arquitetura, testes ou revisão.
-2. Quando houver dúvida de arquitetura, acione primeiro `Architect Onion`.
-3. Para services, controllers, DTOs, casos de uso ou DI, encaminhe para `Backend .NET 10`.
-4. Para repositories, `IDocumentStore`, sessões, índices ou configuração de persistência, encaminhe para `RavenDB Specialist`.
-5. Para implementação frontend, encaminhe para `Frontend Angular Standalone`.
-6. Se a mudança exigir testes de service, acione `Service Test Writer` após o backend.
+2. Quando houver dúvida de arquitetura, acione primeiro `Architect`.
+3. Para services, controllers, DTOs, casos de uso ou DI, encaminhe para `Backend`.
+4. Para repositories, `IDocumentStore`, sessões, índices ou configuração de persistência, encaminhe para `Database`.
+5. Para implementação frontend, encaminhe para `Frontend`.
+6. Se a mudança exigir testes de service, acione `Test` após o backend.
 7. Quando a solicitação pedir review ou quando houver risco relevante, finalize com `Reviewer`.
 8. Em mudanças full stack, coordene backend antes do frontend quando houver contrato de API novo ou alterado.
-9. Quando a mudança backend também alterar persistência, coordene `Backend .NET 10` e `RavenDB Specialist` na mesma sequência.
+9. Quando a mudança backend também alterar persistência, coordene `Backend` e `Database` na mesma sequência.
 
 ## Regras
 

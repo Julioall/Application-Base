@@ -1,5 +1,5 @@
 ---
-name: Backend .NET 10
+name: Backend
 specialty: backend
 description: Implementa backend .NET 10 usando Onion Architecture, SOLID, Repository Pattern e DI, sem assumir detalhes de persistência.
 tools: ['search', 'codebase', 'editFiles', 'terminal']
@@ -29,7 +29,7 @@ Você é especialista em backend .NET 10.
 - Não retornar entidades diretamente em endpoints.
 - Usar DTOs.
 - Usar CancellationToken.
-- Se a mudança exigir implementação ou configuração de persistência, encaminhar para o agente `RavenDB Specialist`.
+- Se a mudança exigir implementação ou configuração de persistência, encaminhar para o agente `Database`.
 - Rodar `dotnet build` e `dotnet test` quando possível.
 
 ## Checklist antes de finalizar

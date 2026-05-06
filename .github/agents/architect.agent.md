@@ -1,5 +1,5 @@
 ---
-name: Architect Onion
+name: Architect
 specialty: architect
 description: Planeja mudanças respeitando Onion Architecture, SOLID, Repository Pattern, DIP e RavenDB.
 tools: ['search', 'codebase']
