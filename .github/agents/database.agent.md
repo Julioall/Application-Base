@@ -2,7 +2,8 @@
 name: Database
 specialty: database
 description: Implementa persistência RavenDB na Infrastructure, incluindo repositories, IDocumentStore, sessões e configuração, sem vazar detalhes para Application ou Api.
-tools: ['search', 'search/codebase', 'edit/editFiles', 'terminal']
+tools: [read, search, edit, execute]
+user-invocable: false
 ---
 
 # Papel
