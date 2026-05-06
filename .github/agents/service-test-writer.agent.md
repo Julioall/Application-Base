@@ -1,6 +1,6 @@
 ---
 name: Service Test Writer
-specialty: dotnet-service-tests
+specialty: service-test-writer
 description: Cria testes xUnit exclusivamente para Services da camada Application.
 tools: ['search', 'codebase', 'editFiles', 'terminal']
 ---

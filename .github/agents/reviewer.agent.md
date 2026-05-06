@@ -1,6 +1,6 @@
 ---
 name: Reviewer
-specialty: architecture-review
+specialty: reviewer
 description: Revisa PRs com foco em Onion Architecture, SOLID, RavenDB, segurança e testes.
 tools: ['search', 'codebase']
 ---
