@@ -1,0 +1,125 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ main, master, develop ]
+  push:
+    branches: [ main, master, develop ]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    name: Backend .NET 10
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect backend project
+        id: backend
+        shell: bash
+        run: |
+          solution="$(find . -maxdepth 3 -name '*.sln' -print -quit)"
+          project="$(find . -path './src/ClientApp' -prune -o -name '*.csproj' -print -quit)"
+          test_project="$(find tests -name '*.csproj' -print -quit 2>/dev/null || true)"
+
+          if [ -n "$solution" ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "target=$solution" >> "$GITHUB_OUTPUT"
+            echo "test_target=$solution" >> "$GITHUB_OUTPUT"
+          elif [ -n "$project" ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "target=$project" >> "$GITHUB_OUTPUT"
+            echo "test_target=$test_project" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "No .NET solution or project found. Skipping backend job."
+          fi
+
+      - name: Setup .NET 10
+        if: steps.backend.outputs.exists == 'true'
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        if: steps.backend.outputs.exists == 'true'
+        run: dotnet restore "${{ steps.backend.outputs.target }}"
+
+      - name: Build
+        if: steps.backend.outputs.exists == 'true'
+        run: dotnet build "${{ steps.backend.outputs.target }}" --configuration Release --no-restore
+
+      - name: Test Services
+        if: steps.backend.outputs.exists == 'true' && steps.backend.outputs.test_target != ''
+        run: dotnet test "${{ steps.backend.outputs.test_target }}" --configuration Release --no-build --verbosity normal
+
+      - name: Skip tests
+        if: steps.backend.outputs.exists == 'true' && steps.backend.outputs.test_target == ''
+        run: echo "No backend test project found. Skipping dotnet test."
+
+  frontend:
+    name: Frontend Angular
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect Angular app
+        id: frontend
+        shell: bash
+        run: |
+          if [ -f src/ClientApp/package.json ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "src/ClientApp/package.json not found. Skipping frontend job."
+          fi
+
+      - name: Setup Node
+        if: steps.frontend.outputs.exists == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: npm
+          cache-dependency-path: src/ClientApp/package-lock.json
+
+      - name: Install
+        if: steps.frontend.outputs.exists == 'true'
+        working-directory: src/ClientApp
+        run: npm ci
+
+      - name: Lint
+        if: steps.frontend.outputs.exists == 'true'
+        working-directory: src/ClientApp
+        run: npm run lint --if-present
+
+      - name: Test
+        if: steps.frontend.outputs.exists == 'true'
+        working-directory: src/ClientApp
+        run: npm run test --if-present
+
+      - name: Build
+        if: steps.frontend.outputs.exists == 'true'
+        working-directory: src/ClientApp
+        run: npm run build
+
+  docker:
+    name: Docker Compose
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Compose
+        run: docker compose config

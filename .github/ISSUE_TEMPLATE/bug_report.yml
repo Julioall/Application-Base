@@ -1,0 +1,101 @@
+name: Bug report
+description: Reportar um bug ou regressão.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Inclua informações suficientes para reproduzir o problema e avaliar impacto.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição
+      description: Descreva o problema observado e o impacto para o usuário ou sistema.
+      placeholder: "Ex.: Ao cadastrar cliente com e-mail válido, a API retorna 500."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área afetada
+      multiple: true
+      options:
+        - Backend .NET
+        - Frontend Angular
+        - RavenDB
+        - Docker
+        - CI/CD
+        - Documentação
+        - Outro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severidade
+      options:
+        - Bloqueante
+        - Alta
+        - Média
+        - Baixa
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para reproduzir
+      description: Liste os passos para reproduzir o bug.
+      placeholder: |
+        1. Acesse ...
+        2. Informe ...
+        3. Clique em ...
+        4. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Resultado esperado
+      placeholder: "Ex.: O cliente é cadastrado e a API retorna 201."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Resultado atual
+      placeholder: "Ex.: A API retorna 500 e registra exceção de validação."
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Ambiente
+      description: Informe ambiente, branch, navegador, versão do Node/.NET ou outros dados relevantes.
+      placeholder: |
+        - Ambiente: local / homologação / produção
+        - Branch/commit:
+        - Navegador:
+        - .NET:
+        - Node:
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidências
+      description: Logs, prints, payloads ou respostas relevantes. Remova dados sensíveis.
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Segurança e dados
+      options:
+        - label: Removi tokens, senhas, dados pessoais e connection strings das evidências.
+        - label: O problema não expõe RavenDB ou detalhes internos em respostas públicas.

@@ -1,0 +1,85 @@
+name: Technical task
+description: Planejar dívida técnica, refatoração, infraestrutura ou melhoria interna.
+title: "[Task]: "
+labels: ["task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use este formulário para mudanças internas sem comportamento funcional direto.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto
+      description: Explique o motivo da tarefa e o problema técnico observado.
+      placeholder: "Ex.: O registro de DI está espalhado e dificulta manter a direção das dependências."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Tipo de tarefa
+      options:
+        - Refatoração
+        - Arquitetura
+        - CI/CD
+        - Segurança
+        - Documentação
+        - Testes
+        - Manutenção
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área afetada
+      multiple: true
+      options:
+        - Backend .NET
+        - Frontend Angular
+        - RavenDB
+        - Docker
+        - GitHub Actions
+        - Instruções para agentes
+        - Outro
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Escopo
+      description: Liste o que deve ser feito e o que fica fora desta tarefa.
+      placeholder: |
+        Dentro:
+        - Centralizar registro de repositories.
+
+        Fora:
+        - Alterar contratos públicos da API.
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validação
+      description: Como confirmar que a tarefa foi concluída?
+      placeholder: |
+        - dotnet build --configuration Release
+        - dotnet test --configuration Release
+        - Revisão de dependências entre projetos
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: safeguards
+    attributes:
+      label: Cuidados obrigatórios
+      options:
+        - label: Não mover regra de negócio para controllers.
+        - label: Não mover regra de negócio para repositories.
+        - label: Não expor tipos RavenDB fora da Infrastructure.
+        - label: Não migrar runner de testes sem pedido explícito.

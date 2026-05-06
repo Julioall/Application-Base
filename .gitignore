@@ -1,0 +1,32 @@
+# Local environment
+.env
+.env.*
+!.env.example
+
+# .NET
+bin/
+obj/
+TestResults/
+*.user
+*.suo
+
+# Angular / Node
+node_modules/
+dist/
+.angular/
+coverage/
+
+# IDE
+.vs/
+.vscode/
+
+# Secrets and certificates
+*.pfx
+*.pem
+*.key
+*.crt
+
+# Logs
+*.log
+
+.fake

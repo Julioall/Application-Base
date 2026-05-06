@@ -1,0 +1,64 @@
+name: GitHub Metadata
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/**"
+  push:
+    branches: [ main, master, develop ]
+    paths:
+      - ".github/**"
+
+concurrency:
+  group: github-metadata-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate GitHub metadata
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Validate YAML
+        shell: bash
+        run: |
+          python -m pip install --upgrade pyyaml
+          python - <<'PY'
+          from pathlib import Path
+
+          import yaml
+
+          for file in sorted(Path(".github").rglob("*.yml")) + sorted(Path(".github").rglob("*.yaml")):
+              with file.open(encoding="utf-8") as stream:
+                  yaml.safe_load(stream)
+              print(f"ok {file}")
+          PY
+
+      - name: Check Markdown files
+        shell: bash
+        run: |
+          files="$(find .github -type f -name '*.md' -print)"
+
+          if [ -z "$files" ]; then
+            echo "No Markdown files found."
+            exit 0
+          fi
+
+          while IFS= read -r file; do
+            if [ ! -s "$file" ]; then
+              echo "$file is empty."
+              exit 1
+            fi
+          done <<< "$files"

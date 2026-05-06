@@ -1,0 +1,77 @@
+name: ${COMPOSE_PROJECT_NAME:-project-base}
+
+services:
+  ravendb:
+    container_name: ${COMPOSE_PROJECT_NAME:-project-base}-ravendb
+    image: ravendb/ravendb:ubuntu-latest
+    ports:
+      - "${RAVENDB_HTTP_PORT:-8080}:8080"
+      - "${RAVENDB_TCP_PORT:-38888}:38888"
+    environment:
+      RAVEN_Setup_Mode: None
+      RAVEN_Security_UnsecuredAccessAllowed: PrivateNetwork
+      RAVEN_ServerUrl: http://0.0.0.0:8080
+      RAVEN_PublicServerUrl: http://localhost:${RAVENDB_HTTP_PORT:-8080}
+      RAVEN_ServerUrl_Tcp: tcp://0.0.0.0:38888
+      RAVEN_PublicServerUrl_Tcp: tcp://localhost:${RAVENDB_TCP_PORT:-38888}
+      RAVEN_ARGS: --log-to-console
+    volumes:
+      - ravendb-data:/var/lib/ravendb/data
+      - ravendb-config:/etc/ravendb
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080 >/dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    networks:
+      - project-network
+
+  project-api:
+    container_name: ${COMPOSE_PROJECT_NAME:-project-base}-api
+    profiles: ["project"]
+    build:
+      context: .
+      dockerfile: docker/api/Dockerfile
+      args:
+        BACKEND_PROJECT_PATH: ${BACKEND_PROJECT_PATH:-src/ApplicationBase.Api/ApplicationBase.Api.csproj}
+        BACKEND_ASSEMBLY_NAME: ${BACKEND_ASSEMBLY_NAME:-ApplicationBase.Api.dll}
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      RavenDb__Urls__0: http://ravendb:8080
+      RavenDb__Database: ${RAVENDB_DATABASE_NAME:-ApplicationBase}
+    ports:
+      - "${BACKEND_HTTP_PORT:-5000}:8080"
+    depends_on:
+      ravendb:
+        condition: service_healthy
+    networks:
+      - project-network
+
+  project-web:
+    container_name: ${COMPOSE_PROJECT_NAME:-project-base}-web
+    profiles: ["project"]
+    build:
+      context: .
+      dockerfile: docker/web/Dockerfile
+      args:
+        FRONTEND_APP_PATH: ${FRONTEND_APP_PATH:-src/ClientApp}
+        FRONTEND_DIST_PATH: ${FRONTEND_DIST_PATH:-dist/application-base-client/browser}
+    ports:
+      - "${FRONTEND_HTTP_PORT:-4200}:80"
+    depends_on:
+      - project-api
+    networks:
+      - project-network
+
+volumes:
+  ravendb-data:
+    name: ${COMPOSE_PROJECT_NAME:-project-base}-ravendb-data
+  ravendb-config:
+    name: ${COMPOSE_PROJECT_NAME:-project-base}-ravendb-config
+
+networks:
+  project-network:
+    name: ${COMPOSE_PROJECT_NAME:-project-base}-network
+    driver: bridge

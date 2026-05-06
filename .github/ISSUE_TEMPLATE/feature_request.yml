@@ -1,0 +1,97 @@
+name: Feature request
+description: Solicitar uma nova funcionalidade ou melhoria funcional.
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use este formulário para descrever valor de negócio, impacto técnico e critérios de aceite.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema ou necessidade
+      description: Qual problema esta feature resolve? Quem é afetado?
+      placeholder: "Ex.: Como usuário administrativo, preciso consultar clientes por status para reduzir triagem manual."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Solução proposta
+      description: Descreva o comportamento esperado sem entrar em detalhes de implementação desnecessários.
+      placeholder: "Ex.: Criar endpoint e tela para listar clientes filtrando por status."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área afetada
+      multiple: true
+      options:
+        - Backend .NET
+        - Frontend Angular
+        - RavenDB
+        - Docker
+        - CI/CD
+        - Documentação
+        - Outro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Camada principal
+      description: Selecione a camada mais impactada pela mudança.
+      options:
+        - Application
+        - Domain
+        - Infrastructure
+        - Api
+        - Frontend
+        - Não se aplica
+    validations:
+      required: true
+
+  - type: textarea
+    id: business_rules
+    attributes:
+      label: Regras de negócio
+      description: Liste regras, validações e exceções conhecidas.
+      placeholder: |
+        - Não permitir cadastro duplicado por e-mail.
+        - Usuários inativos não aparecem por padrão.
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de aceite
+      description: Liste critérios verificáveis.
+      placeholder: |
+        - Dado um cliente ativo, quando eu consultar por status ativo, então o cliente aparece na listagem.
+        - Dado um filtro inválido, quando eu enviar a consulta, então recebo erro de validação.
+    validations:
+      required: true
+
+  - type: textarea
+    id: tests
+    attributes:
+      label: Testes esperados
+      description: Informe cenários de teste. Backend deve focar Services; frontend deve seguir Jest/Karma existente.
+      placeholder: |
+        - Service retorna clientes filtrados por status.
+        - Service rejeita filtro inválido sem chamar repository.
+
+  - type: checkboxes
+    id: architecture
+    attributes:
+      label: Checklist arquitetural
+      options:
+        - label: A regra de negócio deve ficar em Application ou Domain.
+        - label: Services devem depender de interfaces.
+        - label: RavenDB deve permanecer isolado na Infrastructure.
+        - label: Controllers devem permanecer finos.
