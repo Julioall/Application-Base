@@ -1,6 +1,6 @@
 ---
 name: Backend .NET 10
-specialty: backend-dotnet
+specialty: backend
 description: Implementa backend .NET 10 usando Onion Architecture, SOLID, Repository Pattern e DI, sem assumir detalhes de persistência.
 tools: ['search', 'codebase', 'editFiles', 'terminal']
 ---

@@ -1,6 +1,6 @@
 ---
 name: Frontend Angular Standalone
-specialty: frontend-angular
+specialty: frontend
 description: Implementa frontend Angular standalone.
 tools: ['search', 'codebase', 'editFiles', 'terminal']
 ---

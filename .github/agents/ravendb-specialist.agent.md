@@ -1,6 +1,6 @@
 ---
 name: RavenDB Specialist
-specialty: ravendb-specialist
+specialty: database
 description: Implementa persistência RavenDB na Infrastructure, incluindo repositories, IDocumentStore, sessões e configuração, sem vazar detalhes para Application ou Api.
 tools: ['search', 'codebase', 'editFiles', 'terminal']
 ---
