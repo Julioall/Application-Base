@@ -2,7 +2,7 @@
 name: Reviewer
 specialty: reviewer
 description: Revisa PRs com foco em Onion Architecture, SOLID, RavenDB, segurança e testes.
-tools: [read, search]
+tools: [read, search, github/pull_request_read, github/pull_request_review_write]
 user-invocable: false
 ---
 

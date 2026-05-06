@@ -2,7 +2,7 @@
 name: Frontend
 specialty: frontend
 description: Implementa frontend Angular standalone.
-tools: [read, search, edit, execute]
+tools: [read, search, edit, execute, browser]
 user-invocable: false
 ---
 
