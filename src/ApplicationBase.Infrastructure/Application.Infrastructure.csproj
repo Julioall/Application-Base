@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\ApplicationBase.Application\ApplicationBase.Application.csproj" />
-    <ProjectReference Include="..\ApplicationBase.Domain\ApplicationBase.Domain.csproj" />
+    <ProjectReference Include="..\ApplicationBase.Application\Application.Application.csproj" />
+    <ProjectReference Include="..\ApplicationBase.Domain\Application.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -13,6 +13,8 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AssemblyName>Application.Infrastructure</AssemblyName>
+    <RootNamespace>Application.Infrastructure</RootNamespace>
   </PropertyGroup>
 
 </Project>

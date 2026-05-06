@@ -1,4 +1,4 @@
-﻿namespace ApplicationBase.Application.Tests;
+﻿namespace Application.Application.Tests;
 
 public class UnitTest1
 {

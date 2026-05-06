@@ -5,6 +5,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
+    <AssemblyName>Application.Application.Tests</AssemblyName>
+    <RootNamespace>Application.Application.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ApplicationBase.Application\ApplicationBase.Application.csproj" />
-    <ProjectReference Include="..\..\src\ApplicationBase.Domain\ApplicationBase.Domain.csproj" />
+    <ProjectReference Include="..\..\src\ApplicationBase.Application\Application.Application.csproj" />
+    <ProjectReference Include="..\..\src\ApplicationBase.Domain\Application.Domain.csproj" />
   </ItemGroup>
 
 </Project>
