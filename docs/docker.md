@@ -6,9 +6,11 @@ Este template inclui Docker para desenvolvimento local com RavenDB e, quando a a
 
 - `ravendb`: banco local persistido em volumes Docker.
 - `project-api`: API ASP.NET Core .NET 10, ativada pelo profile `project`.
-- `project-web`: Angular servido por Nginx, ativado pelo profile `project`.
+- `project-web`: React (Vite) servido por Nginx, ativado pelo profile `project`.
 
 ## RavenDB local
+
+O RavenDB local roda sem TLS (modo de desenvolvimento), com acesso não autenticado restrito a redes privadas (`PrivateNetwork`). Não expõe acesso não autenticado para IPs públicos.
 
 Subir somente o RavenDB:
 
@@ -39,10 +41,10 @@ docker compose down --volumes
 Antes de usar o profile `project`, ajuste os valores de `.env.example` para o nome real dos projetos:
 
 ```txt
-BACKEND_PROJECT_PATH=src/ApplicationBase.Api/ApplicationBase.Api.csproj
-BACKEND_ASSEMBLY_NAME=ApplicationBase.Api.dll
-FRONTEND_APP_PATH=src/ClientApp
-FRONTEND_DIST_PATH=dist/application-base-client/browser
+BACKEND_PROJECT_PATH=backend/src/Application.Api/Application.Api.csproj
+BACKEND_ASSEMBLY_NAME=Application.Api.dll
+FRONTEND_APP_PATH=frontend/Client
+FRONTEND_DIST_PATH=dist
 ```
 
 Executar:
@@ -58,7 +60,7 @@ docker compose --profile project up --build
 - `RAVENDB_HTTP_PORT`: porta local do RavenDB Studio.
 - `BACKEND_HTTP_PORT`: porta local da API.
 - `FRONTEND_HTTP_PORT`: porta local do frontend web.
-- `FRONTEND_DIST_PATH`: diretório gerado pelo build Angular dentro de `src/ClientApp`.
+- `FRONTEND_DIST_PATH`: diretório gerado pelo build do Vite dentro de `frontend/Client`.
 
 ## Segurança
 

@@ -19,7 +19,7 @@ Descreva objetivamente o que foi alterado.
 - [ ] Application
 - [ ] Infrastructure
 - [ ] Api
-- [ ] Frontend Angular
+- [ ] Frontend React
 - [ ] GitHub/CI
 - [ ] Docker
 - [ ] Não se aplica
@@ -46,7 +46,7 @@ Descreva objetivamente o que foi alterado.
 
 - [ ] Testes backend cobrem somente Services.
 - [ ] Repositories e RavenDB foram mockados nos testes de Service.
-- [ ] Runner frontend existente foi preservado.
+- [ ] Runner frontend existente (Vitest/Testing Library) foi preservado.
 - [ ] Cenários de sucesso, erro e validação foram considerados quando aplicável.
 
 ## Como testar

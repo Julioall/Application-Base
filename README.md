@@ -1,4 +1,4 @@
-# Template Base para .NET 10 + Angular Standalone + RavenDB
+# Template Base para .NET 10 + React + Vite + RavenDB
 
 Este pacote cria uma base de instruções para agentes LLM trabalharem em um projeto com:
 
@@ -8,11 +8,11 @@ Este pacote cria uma base de instruções para agentes LLM trabalharem em um pro
 - Dependency Injection
 - Dependency Inversion Principle
 - .NET 10
-- Angular standalone
+- React com Vite
 - RavenDB como banco de dados
 - Docker Compose para desenvolvimento local
 - xUnit testando somente Services no backend
-- Jest ou Karma para Angular, conforme o runner já configurado no projeto
+- Vitest + Testing Library no frontend
 
 ## Como usar
 
@@ -60,7 +60,7 @@ Project.Infrastructure  -> MinhaEmpresa.MeuProduto.Infrastructure
 Project.Api             -> MinhaEmpresa.MeuProduto.Api
 ```
 
-Ajuste também o diretório do Angular se não for `src/ClientApp`.
+Ajuste também o diretório do frontend se não for `frontend/Client`.
 
 Ajuste `.env.example`, `compose.yml` e os Dockerfiles quando substituir `Project` pelo nome real da solução.
 
@@ -84,7 +84,7 @@ Backend:
 
 Frontend:
 
-- Usar o runner existente: Jest ou Karma.
+- Usar Vitest + Testing Library.
 - Não migrar runner sem pedido explícito.
 
 ## Docker
@@ -101,7 +101,7 @@ Validar Compose:
 docker compose config
 ```
 
-Executar a aplicação completa quando `src/` existir:
+Executar a aplicação completa quando backend/frontend existirem:
 
 ```bash
 docker compose --profile project up --build

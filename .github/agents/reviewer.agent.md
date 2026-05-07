@@ -25,7 +25,7 @@ Revise:
 9. Segurança.
 10. Performance.
 11. Contratos de API.
-12. Acessibilidade no Angular.
+12. Acessibilidade no frontend.
 
 ## Saída esperada
 

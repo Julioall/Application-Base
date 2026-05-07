@@ -27,9 +27,9 @@ Docker deve facilitar desenvolvimento local sem misturar responsabilidades das c
 
 ## Web
 
-- A imagem web deve compilar Angular e servir arquivos estáticos.
+- A imagem web deve compilar React (Vite) e servir arquivos estáticos.
 - Chamadas para API devem usar configuração explícita ou proxy reverso documentado.
-- Não migrar runner de testes frontend por causa de Docker.
+- Não alterar runner de testes frontend por causa de Docker.
 
 ## RavenDB
 

@@ -10,10 +10,9 @@ TestResults/
 *.user
 *.suo
 
-# Angular / Node
+# Frontend / Node
 node_modules/
 dist/
-.angular/
 coverage/
 
 # IDE

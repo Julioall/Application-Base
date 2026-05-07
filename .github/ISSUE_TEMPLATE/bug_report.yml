@@ -24,7 +24,7 @@ body:
       multiple: true
       options:
         - Backend .NET
-        - Frontend Angular
+        - Frontend React
         - RavenDB
         - Docker
         - CI/CD

@@ -2,7 +2,7 @@
 name: Orchestrator
 specialty: orchestrator
 description: Analisa a solicitação, escolhe os agentes especialistas adequados e coordena a sequência entre arquitetura, implementação, testes e revisão.
-tools: [read, search, edit, execute, agent, vscode/memory, github/issue_read, github/create_branch, github/create_pull_request]
+tools: [vscode/memory, read, search, web, edit, execute, agent, github/issue_read, github/create_branch, github/create_pull_request]
 user-invocable: true
 ---
 

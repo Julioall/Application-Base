@@ -1,0 +1,12 @@
+.items-list-section {
+  margin-top: 2rem;
+}
+
+.items-error {
+  color: #dc2626;
+}
+
+.item-date {
+  color: #64748b;
+  font-size: 0.85rem;
+}

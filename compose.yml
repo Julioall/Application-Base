@@ -34,8 +34,8 @@ services:
       context: .
       dockerfile: docker/api/Dockerfile
       args:
-        BACKEND_PROJECT_PATH: ${BACKEND_PROJECT_PATH:-src/ApplicationBase.Api/ApplicationBase.Api.csproj}
-        BACKEND_ASSEMBLY_NAME: ${BACKEND_ASSEMBLY_NAME:-ApplicationBase.Api.dll}
+        BACKEND_PROJECT_PATH: ${BACKEND_PROJECT_PATH:-backend/src/Application.Api/Application.Api.csproj}
+        BACKEND_ASSEMBLY_NAME: ${BACKEND_ASSEMBLY_NAME:-Application.Api.dll}
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080
@@ -56,8 +56,8 @@ services:
       context: .
       dockerfile: docker/web/Dockerfile
       args:
-        FRONTEND_APP_PATH: ${FRONTEND_APP_PATH:-src/ClientApp}
-        FRONTEND_DIST_PATH: ${FRONTEND_DIST_PATH:-dist/application-base-client/browser}
+        FRONTEND_APP_PATH: ${FRONTEND_APP_PATH:-frontend/Client}
+        FRONTEND_DIST_PATH: ${FRONTEND_DIST_PATH:-dist}
     ports:
       - "${FRONTEND_HTTP_PORT:-4200}:80"
     depends_on:
