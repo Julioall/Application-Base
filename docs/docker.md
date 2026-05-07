@@ -10,6 +10,8 @@ Este template inclui Docker para desenvolvimento local com RavenDB e, quando a a
 
 ## RavenDB local
 
+O RavenDB local roda sem TLS (modo de desenvolvimento), com acesso não autenticado restrito a redes privadas (`PrivateNetwork`). Não expõe acesso não autenticado para IPs públicos.
+
 Subir somente o RavenDB:
 
 ```bash
@@ -39,8 +41,8 @@ docker compose down --volumes
 Antes de usar o profile `project`, ajuste os valores de `.env.example` para o nome real dos projetos:
 
 ```txt
-BACKEND_PROJECT_PATH=backend/src/ApplicationBase.Api/ApplicationBase.Api.csproj
-BACKEND_ASSEMBLY_NAME=ApplicationBase.Api.dll
+BACKEND_PROJECT_PATH=backend/src/Application.Api/Application.Api.csproj
+BACKEND_ASSEMBLY_NAME=Application.Api.dll
 FRONTEND_APP_PATH=frontend/Client
 FRONTEND_DIST_PATH=dist
 ```

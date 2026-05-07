@@ -9,7 +9,7 @@ services:
       - "${RAVENDB_TCP_PORT:-38888}:38888"
     environment:
       RAVEN_Setup_Mode: None
-      RAVEN_Security_UnsecuredAccessAllowed: PublicNetwork
+      RAVEN_Security_UnsecuredAccessAllowed: PrivateNetwork
       RAVEN_ServerUrl: http://0.0.0.0:8080
       RAVEN_PublicServerUrl: http://localhost:${RAVENDB_HTTP_PORT:-8080}
       RAVEN_ServerUrl_Tcp: tcp://0.0.0.0:38888

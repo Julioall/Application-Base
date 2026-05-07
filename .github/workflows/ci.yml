@@ -123,3 +123,6 @@ jobs:
 
       - name: Validate Compose
         run: docker compose config
+
+      - name: Build images
+        run: docker compose --profile project build
