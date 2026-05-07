@@ -2,7 +2,7 @@
 
 ## Projeto
 
-Aplicação base com backend .NET 10, frontend Angular standalone e RavenDB.
+Aplicação base com backend .NET 10, frontend React com Vite e RavenDB.
 
 ## Arquitetura
 
@@ -47,9 +47,9 @@ tests/
 - Implementações concretas ficam em Infrastructure.
 - Registrar dependências via DI.
 - Testar somente Services no backend.
-- Usar Angular standalone no frontend.
+- Usar React + Vite + TypeScript no frontend.
 - Usar xUnit nos testes backend.
-- Usar Jest ou Karma no Angular conforme configuração existente.
+- Usar Vitest e Testing Library no frontend conforme configuração existente.
 - Não migrar runner de testes sem pedido explícito.
 
 ## Comandos
@@ -65,7 +65,7 @@ dotnet test --configuration Release
 Frontend:
 
 ```bash
-cd src/ClientApp
+cd frontend/Client
 npm ci
 npm run lint
 npm run test

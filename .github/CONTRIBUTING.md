@@ -32,7 +32,7 @@ Regras principais:
 Use os comandos:
 
 ```bash
-cd src/ClientApp
+cd frontend/Client
 npm ci
 npm run lint
 npm run test
@@ -41,9 +41,9 @@ npm run build
 
 Regras principais:
 
-- Usar Angular standalone.
-- Não migrar Jest/Karma sem pedido explícito.
-- Services Angular concentram comunicação HTTP.
+- Usar React + Vite + TypeScript.
+- Não migrar Vitest/Testing Library sem pedido explícito.
+- Services/hooks concentram comunicação HTTP.
 - Componentes tratam estados de loading, erro e vazio.
 
 ## Docker
@@ -60,7 +60,7 @@ Para validar o Compose:
 docker compose config
 ```
 
-Para executar API e frontend web via Docker quando `src/` existir:
+Para executar API e frontend web via Docker quando os projetos existirem:
 
 ```bash
 docker compose --profile project up --build

@@ -27,9 +27,9 @@ jobs:
         id: backend
         shell: bash
         run: |
-          solution="$(find . -maxdepth 3 -name '*.sln' -print -quit)"
-          project="$(find . -path './src/ClientApp' -prune -o -name '*.csproj' -print -quit)"
-          test_project="$(find tests -name '*.csproj' -print -quit 2>/dev/null || true)"
+          solution="$(find . -maxdepth 3 \( -name '*.sln' -o -name '*.slnx' \) -print -quit)"
+          project="$(find . -path './frontend/Client' -prune -o -name '*.csproj' -print -quit)"
+          test_project="$(find . \( -path './backend/tests/*' -o -path './tests/*' \) -name '*.csproj' -print -quit 2>/dev/null || true)"
 
           if [ -n "$solution" ]; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
@@ -67,22 +67,22 @@ jobs:
         run: echo "No backend test project found. Skipping dotnet test."
 
   frontend:
-    name: Frontend Angular
+    name: Frontend React
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Detect Angular app
+      - name: Detect React app
         id: frontend
         shell: bash
         run: |
-          if [ -f src/ClientApp/package.json ]; then
+          if [ -f frontend/Client/package.json ]; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"
-            echo "src/ClientApp/package.json not found. Skipping frontend job."
+            echo "frontend/Client/package.json not found. Skipping frontend job."
           fi
 
       - name: Setup Node
@@ -91,26 +91,26 @@ jobs:
         with:
           node-version: '22.x'
           cache: npm
-          cache-dependency-path: src/ClientApp/package-lock.json
+          cache-dependency-path: frontend/Client/package-lock.json
 
       - name: Install
         if: steps.frontend.outputs.exists == 'true'
-        working-directory: src/ClientApp
+        working-directory: frontend/Client
         run: npm ci
 
       - name: Lint
         if: steps.frontend.outputs.exists == 'true'
-        working-directory: src/ClientApp
+        working-directory: frontend/Client
         run: npm run lint --if-present
 
       - name: Test
         if: steps.frontend.outputs.exists == 'true'
-        working-directory: src/ClientApp
+        working-directory: frontend/Client
         run: npm run test --if-present
 
       - name: Build
         if: steps.frontend.outputs.exists == 'true'
-        working-directory: src/ClientApp
+        working-directory: frontend/Client
         run: npm run build
 
   docker:

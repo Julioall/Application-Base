@@ -42,5 +42,5 @@ PRs devem pedir:
 - CI deve executar backend e frontend quando os respectivos projetos existirem.
 - Backend deve usar `dotnet build --configuration Release` e `dotnet test --configuration Release`.
 - Frontend deve usar `npm ci`, `npm run lint`, `npm run test` e `npm run build`, respeitando scripts existentes.
-- Workflows de template devem ser tolerantes a repositórios ainda sem `src/` ou `src/ClientApp`.
+- Workflows de template devem ser tolerantes a repositórios ainda sem backend/frontend.
 - Docker deve ser validado com `docker compose config` quando `compose.yml` existir.

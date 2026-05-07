@@ -27,7 +27,7 @@ Os arquivos Docker ficam na raiz e em `docker/`:
 - `.env.example`: variáveis locais seguras.
 - `.dockerignore`: exclusões do contexto de build.
 - `docker/api/Dockerfile`: imagem da API .NET.
-- `docker/web/Dockerfile`: build Angular e Nginx.
+- `docker/web/Dockerfile`: build React (Vite) e Nginx.
 - `docker/web/nginx.conf`: servidor web e proxy reverso local.
 
 ## Regras de manutenção
@@ -35,5 +35,5 @@ Os arquivos Docker ficam na raiz e em `docker/`:
 - Preserve Onion Architecture nas instruções e checklists.
 - Não exponha tipos RavenDB fora da Infrastructure.
 - Não adicione secrets, URLs de produção ou certificados reais.
-- Não altere runner de testes frontend sem pedido explícito.
+- Não altere runner de testes frontend (Vitest/Testing Library) sem pedido explícito.
 - Mantenha comandos backend e frontend alinhados com `AGENTS.md`.

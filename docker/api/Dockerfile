@@ -5,7 +5,7 @@ ARG DOTNET_VERSION=10.0
 FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS build
 WORKDIR /src
 
-ARG BACKEND_PROJECT_PATH=src/ApplicationBase.Api/ApplicationBase.Api.csproj
+ARG BACKEND_PROJECT_PATH=backend/src/Application.Api/Application.Api.csproj
 
 COPY . .
 
@@ -19,7 +19,7 @@ RUN dotnet publish "$BACKEND_PROJECT_PATH" \
 FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS runtime
 WORKDIR /app
 
-ARG BACKEND_ASSEMBLY_NAME=ApplicationBase.Api.dll
+ARG BACKEND_ASSEMBLY_NAME=Application.Api.dll
 
 ENV ASPNETCORE_URLS=http://+:8080 \
     DOTNET_RUNNING_IN_CONTAINER=true \

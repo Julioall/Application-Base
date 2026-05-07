@@ -5,10 +5,10 @@
 Este projeto usa:
 
 - Backend: .NET 10 com ASP.NET Core Web API.
-- Frontend: Angular standalone.
+- Frontend: React com Vite, TypeScript, Tailwind CSS, shadcn/ui, Radix UI, React Router, TanStack React Query, React Hook Form e Zod.
 - Banco de dados: RavenDB.
 - Testes backend: xUnit.
-- Testes frontend: Jest ou Karma, conforme configuração existente.
+- Testes frontend: Vitest e Testing Library.
 - Arquitetura: Onion Architecture.
 - Princípios: SOLID, Dependency Injection e Dependency Inversion Principle.
 - Persistência: Repository Pattern.
@@ -125,10 +125,10 @@ dotnet test --configuration Release
 
 ## Comandos frontend
 
-Ajustar o diretório se o Angular estiver fora de `src/ClientApp`.
+Ajustar o diretório se o frontend estiver fora de `frontend/Client`.
 
 ```bash
-cd src/ClientApp
+cd frontend/Client
 npm ci
 npm run lint
 npm run test

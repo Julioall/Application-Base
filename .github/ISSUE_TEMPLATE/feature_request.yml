@@ -33,7 +33,7 @@ body:
       multiple: true
       options:
         - Backend .NET
-        - Frontend Angular
+        - Frontend React
         - RavenDB
         - Docker
         - CI/CD
@@ -81,7 +81,7 @@ body:
     id: tests
     attributes:
       label: Testes esperados
-      description: Informe cenários de teste. Backend deve focar Services; frontend deve seguir Jest/Karma existente.
+      description: Informe cenários de teste. Backend deve focar Services; frontend deve seguir Vitest/Testing Library existente.
       placeholder: |
         - Service retorna clientes filtrados por status.
         - Service rejeita filtro inválido sem chamar repository.
